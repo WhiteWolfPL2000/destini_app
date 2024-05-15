@@ -21,11 +21,16 @@ class StoryPage extends StatefulWidget {
   const StoryPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _StoryPageState createState() => _StoryPageState();
 }
 
 class _StoryPageState extends State<StoryPage> {
+  void updateStory(int choiceNumber) {
+    setState(() {
+      storyBrain.nextStory(choiceNumber);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,8 +65,8 @@ class _StoryPageState extends State<StoryPage> {
                     backgroundColor: MaterialStatePropertyAll(Colors.red),
                   ),
                   onPressed: () {
-                    storyBrain.nextStory(1);
-                    },
+                    updateStory(1);
+                  },
                   child: Text(
                     storyBrain.getChoice1(),
                     style: const TextStyle(
@@ -83,14 +88,13 @@ class _StoryPageState extends State<StoryPage> {
                       backgroundColor: MaterialStatePropertyAll(Colors.blue),
                     ),
                     onPressed: () {
-                      storyBrain.nextStory(2);
+                      updateStory(2);
                     },
-                
                     child: Text(
                       storyBrain.getChoice2(),
                       style: const TextStyle(
                         fontSize: 20.0,
-                        color: Colors.white
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -103,4 +107,3 @@ class _StoryPageState extends State<StoryPage> {
     );
   }
 }
-//github.com/londonappbrewery/destini-challenge-completed/
